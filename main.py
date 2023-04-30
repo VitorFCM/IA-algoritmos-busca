@@ -1,5 +1,5 @@
-from criacao import cria_vertices 
+from criacao import cria_grafo
 
 if __name__ == "__main__":
-    vertices = cria_vertices(1000000)
-    print(len(vertices))
+    vertices = cria_grafo(8, 0.5)
+    
