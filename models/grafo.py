@@ -7,6 +7,11 @@ class Grafo:
         self.vertices = []
         self.range = n_range
 
+    def vertice_indice(self, indice):
+        if indice < 0 or indice >= self.range:
+            print("Indice fora dos limites")
+        return self.vertices[indice]
+
     def gerar_vertices(self):
         coords_usadas = []
 
