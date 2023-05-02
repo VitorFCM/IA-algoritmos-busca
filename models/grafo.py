@@ -10,7 +10,8 @@ class Grafo:
     def gerar_vertices(self):
         coords_usadas = []
 
-        for i in range(self.range): 
+        i = 0
+        while i < self.range: 
             # Gera coordenadas aleatórias no plano
             x = randrange(self.range + 1)
             y = randrange(self.range + 1)
@@ -18,12 +19,12 @@ class Grafo:
 
             # Se ao acaso gerar um par de coordenadas ja preenchidas, apenas repete o passo atual
             if (coords in coords_usadas):
-                i = i-1
                 continue
             
             # Registra a nova coordenada e gera um vertice naquela posição
             coords_usadas.append(coords)
             self.vertices.append(Vertice(coords['x'],coords['y']))
+            i+=1
     
     def gerar_arestas(self,p):
         # Percorre todos os pares de vertices possiveis
