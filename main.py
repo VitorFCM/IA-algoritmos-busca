@@ -42,24 +42,12 @@ if __name__ == "__main__":
         mode='markers',
         hoverinfo='text',
         marker=dict(
-            showscale=True,
-            # colorscale options
-            #'Greys' | 'YlGnBu' | 'Greens' | 'YlOrRd' | 'Bluered' | 'RdBu' |
-            #'Reds' | 'Blues' | 'Picnic' | 'Rainbow' | 'Portland' | 'Jet' |
-            #'Hot' | 'Blackbody' | 'Earth' | 'Electric' | 'Viridis' |
-            colorscale='YlGnBu',
-            reversescale=True,
             color=['#188'],
-            size=5,
-            colorbar=dict(
-                thickness=15,
-                title='Node Connections',
-                xanchor='left',
-                titleside='right'
-            ),
+            size=10,
             line_width=2)
         )
-    node_trace.marker["color"] = ['#088']
+
+    node_trace.marker["color"] = ['#800' for i in range(8)]
         
     fig = go.Figure(data=[edge_trace, node_trace],
          layout=go.Layout(
@@ -76,14 +64,59 @@ if __name__ == "__main__":
             xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
             yaxis=dict(showgrid=False, zeroline=False, showticklabels=False))
             )
+
     import dash
     from dash import dcc
     from dash import html
+    from dash import State, Output, Input
+
 
     app = dash.Dash()
     app.layout = html.Div([
-        dcc.Graph(figure=fig)
+        dcc.RadioItems(
+            options=[
+                {"label": "Bar", "value": 1},
+                {"label": "Line", "value": 0},
+            ],
+            value=1,
+            id="fig-type",
+        ),
+        html.Div(
+            dcc.Graph(figure=fig, id="line-graph"),
+            id="graph",
+        ),
     ])
+
+    @app.callback(
+        Output("graph", "children"),
+        [Input("fig-type", "value")],
+        [State("line-graph", "figure")],
+    )
+    def toggle_modebar(i, fig):
+        print(i)
+        if(i == 0):
+            node_trace.marker["color"] = ['#800' for j in range(8)]
+        else:
+            node_trace.marker["color"] = ['#188' for j in range(8)]
+
+            
+        fig = go.Figure(data=[edge_trace, node_trace],
+             layout=go.Layout(
+                title='<br>Network graph made with Python',
+                titlefont_size=16,
+                showlegend=False,
+                hovermode='closest',
+                margin=dict(b=20,l=5,r=5,t=40),
+                annotations=[ dict(
+                    text="Python code: <a href='https://plotly.com/ipython-notebooks/network-graphs/'> https://plotly.com/ipython-notebooks/network-graphs/</a>",
+                    showarrow=False,
+                    xref="paper", yref="paper",
+                    x=0.005, y=-0.002 ) ],
+                xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                yaxis=dict(showgrid=False, zeroline=False, showticklabels=False))
+                )
+        return dcc.Graph(id="line-graph", figure=fig if fig else {})
+
 
     app.run_server(debug=True, use_reloader=False)
     #fig.show()
