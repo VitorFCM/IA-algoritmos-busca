@@ -6,3 +6,4 @@ class Vertice:
         self.x = x
         self.y = y
         self.vizinhos = []
+        self.visitado = False
