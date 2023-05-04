@@ -85,9 +85,11 @@ def update_grafo(g: Grafo, origem: Vertice, destino: Vertice, visitados) -> go.F
             node_x.append(node.x)
             node_y.append(node.y)
 
-    add_vertex(fig, node_x, node_y, 'Não visitados', '#000')
-    add_vertex(fig, node_x_visitado, node_y_visitado, 'Visitados', 'blue')
+    add_vertex(fig, node_x, node_y, 'Não visitados', '#fff')
+    add_vertex(fig, node_x_visitado, node_y_visitado, 'Visitados', 'black')
     add_vertex(fig, [origem.x], [origem.y], 'Origem', 'green')
     add_vertex(fig, [destino.x], [destino.y], 'Destino', 'red')
+
+    fig.update_layout(template="simple_white")
     
     return fig
