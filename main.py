@@ -2,7 +2,7 @@ from models.grafo import Grafo
 from random import randrange, uniform
 from dash import dcc, html
 from dash.dependencies import Input, Output
-import models.grafo as gf
+from searches.profundidade import busca_profundidade
 import models.plot as mp
 import plotly.graph_objects as go
 import dash
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     while origem == destino:
         destino = randrange(g.range)
 
-    gf.busca_profundidade(g, origem, destino, passos, True)
+    busca_profundidade(g, origem, destino, passos, True)
 
     app.layout = html.Div([
         html.H1('Rede Aleatória'),
