@@ -44,19 +44,26 @@ class Grafo:
                     vert1.vizinhos.append((v2,peso))
                     vert2.vizinhos.append((v1,peso))
 
-def busca_profundidade(G, origem, destino, passos=[], debug=False):
+def busca_profundidade(G, origem, destino, caminho, passos=[], debug=False):
     visitados = []
-    busca_profundidade_rec(G, origem, destino, visitados, passos, debug)
+    c = []
+    busca_profundidade_rec(G, origem, destino, c, caminho, visitados, passos, debug)
 
-def busca_profundidade_rec(G, origem, destino, visitados, passos, debug):
+def busca_profundidade_rec(G, origem, destino, c, caminho, visitados, passos, debug):
     if origem != destino:
         visitados.append(origem)
+        c.append(origem)
         if debug == True:
             passos.append(visitados.copy())
+            caminho.append(c.copy())
+            # print(c)
         for v in G.vertice_indice(origem).vizinhos:
             if v[0] not in visitados:
-                if busca_profundidade_rec(G, v[0], destino, visitados, passos, debug) == True:
+                if busca_profundidade_rec(G, v[0], destino, c, caminho, visitados, passos, debug) == True:
                     return True;
+        c.pop()
+        if debug == True:
+            caminho.append(c.copy())
         return False
     else:
         return True
