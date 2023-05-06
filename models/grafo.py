@@ -3,9 +3,13 @@ from random import randrange, uniform
 from math import sqrt
 
 class Grafo:
-    def __init__(self, n_range):
+    def __init__(self, n_range, prob):
         self.vertices = []
         self.range = n_range
+
+        self.gerar_vertices()
+
+        self.gerar_arestas(prob)
 
     def vertice_indice(self, indice):
         if indice < 0 or indice >= self.range:
@@ -31,7 +35,7 @@ class Grafo:
             self.vertices.append(Vertice(coords['x'],coords['y']))
             i+=1
     
-    def gerar_arestas(self,p):
+    def gerar_arestas(self, p):
         # Percorre todos os pares de vertices possiveis
         for v1 in range(self.range):
             for v2 in range(v1 + 1,self.range):

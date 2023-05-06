@@ -1,10 +1,9 @@
 from models.grafo import Grafo
-from random import randrange, uniform
+from random import randrange
 from dash import dcc, html
 from dash.dependencies import Input, Output
 from searches.profundidade import busca_profundidade
 import models.plot as mp
-import plotly.graph_objects as go
 import dash
 
 global g, app, origem, destino, passos
@@ -41,11 +40,8 @@ def update_interval(n):
     
 if __name__ == "__main__":
 
-    g = Grafo(n_range=100)
+    g = Grafo(n_range=20, prob=0.5)
     passos = [[]]
-
-    g.gerar_vertices()
-    g.gerar_arestas(0.05)
 
     origem = randrange(g.range)
     destino = randrange(g.range)
