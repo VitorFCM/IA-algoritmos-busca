@@ -16,13 +16,13 @@ def update_figure(n):
     index = n
     if n >= len(passos):
         index = len(passos) - 1
-    # print(f"Index :{index} List: {passos[index]}")
-    # return mp.update_grafo(g, g.vertice_indice(origem), g.vertice_indice(destino), caminho[index], passos[index])
+
     return mp.update_live_plot(g, [
-        (passos[index], "Visitados", "gray", "Percorrida", "black"),
-        ([origem], "Origem", "green", "", "white"),
-        ([destino], "Destino", "red", "", "white"),
-    ])
+        ([origem], "Origem", "green"),
+        ([destino], "Destino", "red"),
+                               ], [
+        (passos[index], "Percorrida", "black"),
+                               ])
 
 
 @app.callback(
@@ -45,10 +45,16 @@ def update_interval(n):
     else:
         return 'Pause', False
 
+# @app.callback(
+#     Output('graph-with-slider', 'figure'),
+#     Input('year-slider', 'value'))
+# def new_graph(n):
+#     g = Grafo(n, p)
+
 
 if __name__ == "__main__":
 
-    g = Grafo(n_range=20, prob=0.5)
+    g = Grafo(n_range=20, prob=0.1)
     passos = [[]]
 
     origem = randrange(g.range)
@@ -57,7 +63,6 @@ if __name__ == "__main__":
         destino = randrange(g.range)
 
     busca_profundidade(g, origem, destino, passos, True)
-
     app.layout = html.Div([
         html.H1('Rede Aleatória'),
         dcc.Graph(id='live-update-graph'),
