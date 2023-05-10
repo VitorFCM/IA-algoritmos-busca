@@ -17,11 +17,13 @@ def update_figure(n):
     if n >= len(passos):
         index = len(passos) - 1
 
+    print(passos[:index+1]) #Esse print eh apenas para debug
+
     return mp.update_live_plot(g, [
         ([origem], "Origem", "green"),
         ([destino], "Destino", "red"),
                                ], [
-        (passos[index], "Percorrida", "black"),
+                                   (passos[:index+1], "Percorrida", "black"),
                                ])
 
 
@@ -55,7 +57,7 @@ def update_interval(n):
 if __name__ == "__main__":
 
     g = Grafo(n_range=20, prob=0.1)
-    passos = [[]]
+    passos = []
 
     origem = randrange(g.range)
     destino = randrange(g.range)
