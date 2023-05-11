@@ -17,8 +17,6 @@ def update_figure(n):
     if n >= len(passos):
         index = len(passos) - 1
 
-    print(passos[:index+1]) #Esse print eh apenas para debug
-
     return mp.update_live_plot(g, [
         ([origem], "Origem", "green"),
         ([destino], "Destino", "red"),

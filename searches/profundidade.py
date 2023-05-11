@@ -9,8 +9,6 @@ def busca_profundidade_rec(grafo:Grafo, origem:int, destino:int, visitados:list,
     for v in grafo.vertice_indice(origem).vizinhos:
         if v[0] not in visitados:
             if debug:
-                #arestas.append(arestas[len(arestas) - 1].copy())
-                #arestas[len(arestas) - 1].append((origem, v[0]))
                 arestas.append((origem, v[0]))
             if busca_profundidade_rec(grafo, v[0], destino, visitados, arestas, debug):
                 return True
