@@ -3,10 +3,11 @@ from random import randrange
 from dash import dcc, html
 from dash.dependencies import Input, Output
 from searches.profundidade import busca_profundidade
+from searches.largura import busca_largura
 import models.plot as mp
 import dash
 
-global g, app, origem, destino, caminho, passos
+global g, app, origem, destino, caminho, arestas
 app = dash.Dash(__name__)
 
 
@@ -14,14 +15,14 @@ app = dash.Dash(__name__)
               Input('interval-component', 'n_intervals'))
 def update_figure(n):
     index = n
-    if n >= len(passos):
-        index = len(passos) - 1
+    if n >= len(arestas):
+        index = len(arestas) - 1
 
     return mp.update_live_plot(g, [
         ([origem], "Origem", "green"),
         ([destino], "Destino", "red"),
-                               ], [
-                                   (passos[:index+1], "Percorrida", "black"),
+    ], [
+                                   (arestas[:index + 1], "Percorrida", "black"),
                                ])
 
 
@@ -45,6 +46,7 @@ def update_interval(n):
     else:
         return 'Pause', False
 
+
 # @app.callback(
 #     Output('graph-with-slider', 'figure'),
 #     Input('year-slider', 'value'))
@@ -55,14 +57,17 @@ def update_interval(n):
 if __name__ == "__main__":
 
     g = Grafo(n_range=20, prob=0.1)
-    passos = []
 
     origem = randrange(g.range)
     destino = randrange(g.range)
     while origem == destino:
         destino = randrange(g.range)
 
-    busca_profundidade(g, origem, destino, passos, True)
+    arestas = [(origem, origem)]
+    # busca_profundidade(g, origem, destino, arestas, True)
+    busca_largura(g, origem, destino, arestas, True)
+    print(arestas)
+
     app.layout = html.Div([
         html.H1('Rede Aleatória'),
         dcc.Graph(id='live-update-graph'),
