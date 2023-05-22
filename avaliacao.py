@@ -8,7 +8,7 @@ if __name__ == "__main__":
     #grafo = models.grafo.Grafo(n_range = 10,)
     # Criar um grafo
     n_range = 10  # Número de vértices no grafo
-    prob = 0.5  # Probabilidade de geração de aresta entre dois vértices
+    prob = 0.05  # Probabilidade de geração de aresta entre dois vértices
     grafo = Grafo(n_range, prob)
 
     start_node = 0
