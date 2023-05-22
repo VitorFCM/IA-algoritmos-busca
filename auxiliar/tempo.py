@@ -2,13 +2,14 @@ import time
 ####AREA PARA VER TEMPOS DE EXECUCAO
 
 
-def mede_tempo(func):
+def mede_tempo(func,*args):
 
+    print('Iniciando cronometro.')
     inicio = time.time()
 
     # Codigo de Busca
 
-    aux = func
+    aux = func(*args)
 
     ##
     fim = time.time()
