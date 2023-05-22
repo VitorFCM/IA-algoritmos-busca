@@ -23,7 +23,8 @@ def busca_largura(grafo: Grafo, origem: int, destino: int, arestas=[], plot=Fals
     visitados = []
     fila = [origem]
     status = False
-
+    arestas.clear()
+    arestas.append((origem, origem))
     while fila and (not status):
         prox = fila[0]
         fila.pop(0)

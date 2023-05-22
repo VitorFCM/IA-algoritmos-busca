@@ -18,6 +18,8 @@ def busca_profundidade_rec(grafo:Grafo, origem:int, destino:int, visitados:list,
 
 def busca_profundidade(grafo: Grafo, origem:int, destino:int, arestas=[], plot=False):
     visitados = []
+    arestas.clear()
+    arestas.append((origem, origem))
     busca_profundidade_rec(grafo, origem, destino, visitados, arestas, plot)
 
 
