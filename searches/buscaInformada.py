@@ -1,8 +1,8 @@
-from funcoesAvaliacao import *
-
-def busca_heuristica(grafo, start_node, goal_node, func_heuristica, func_info_rede):
+def busca_informada(grafo, start_node, goal_node, func_heuristica, func_info_rede):
     visited = []
     stack = [(func_heuristica(grafo.vertice_indice(start_node), grafo.vertice_indice(goal_node)), start_node)]
+
+    print(grafo.vertices)
 
     while stack:
         stack.sort(reverse=True)
@@ -13,6 +13,7 @@ def busca_heuristica(grafo, start_node, goal_node, func_heuristica, func_info_re
             return True
 
         visited.append(current_node)
+        #print(current_node)
 
         for neighbor in grafo.vertice_indice(current_node).vizinhos:
             if neighbor not in visited:
@@ -21,21 +22,3 @@ def busca_heuristica(grafo, start_node, goal_node, func_heuristica, func_info_re
 
     print("Caminho não encontrado.")
 
-
-
-if __name__ == '__main__':
-
-    #grafo = models.grafo.Grafo(n_range = 10,)
-    # Criar um grafo
-    n_range = 10  # Número de vértices no grafo
-    prob = 0.5  # Probabilidade de geração de aresta entre dois vértices
-    grafo = Grafo(n_range, prob)
-
-    start_node = 0
-    goal_node = 5
-
-    found = busca_heuristica(grafo, start_node, goal_node, heuristica_best_first, info_rede_best_first)
-    if found:
-        print("Caminho encontrado!")
-    else:
-        print("Caminho não encontrado.")
