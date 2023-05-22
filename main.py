@@ -4,6 +4,7 @@ from dash import dcc, html, ctx
 from dash.dependencies import Input, Output
 from searches.profundidade import busca_profundidade
 from searches.largura import busca_largura
+from searches.djisktra import busca_djisktra
 import models.plot as mp
 import dash
 from auxiliar.tempo import mede_tempo
@@ -73,11 +74,12 @@ def button_press(play_b, pause_b, next_b, previous_b, n_intervals, disabled):
 def select_search(value):
     if value == 'Busca em Profundidade':
         busca_profundidade(g, origem, destino, arestas, True)
-        print(arestas)
         return 0
     elif value == 'Busca em Largura':
         busca_largura(g, origem, destino, arestas, True)
-        print(arestas)
+        return 0
+    elif value == 'Djisktra':
+        busca_djisktra(g, origem, destino, arestas, True)
         return 0
 
 if __name__ == "__main__":
@@ -103,7 +105,7 @@ if __name__ == "__main__":
         html.H1('Rede Aleatória'),
         dcc.Graph(id='live-update-graph'),
         html.Div(children=[
-            dcc.Dropdown(['Busca em Profundidade', 'Busca em Largura'], 'Busca em Profundidade',
+            dcc.Dropdown(['Busca em Profundidade', 'Busca em Largura', 'Djisktra'], 'Busca em Profundidade',
                          id='search-dropdown'),
         ]),
         html.Br(),
