@@ -6,7 +6,6 @@ from searches.profundidade import busca_profundidade
 from searches.largura import busca_largura
 import models.plot as mp
 import dash
-from auxiliar.tempo import mede_tempo
 
 global g, app, origem, destino, caminho, arestas
 app = dash.Dash(__name__)
@@ -94,6 +93,3 @@ if __name__ == "__main__":
 
     app.run(debug=True)
 
-    ####AREA PARA VER TEMPOS DE EXECUCAO
-    ##Paramentro eh a funcao a ser medido o tempo
-    mede_tempo()
