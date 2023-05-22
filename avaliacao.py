@@ -1,13 +1,11 @@
 from models.grafo import Grafo
 from auxiliar.tempo import mede_tempo
+from auxiliar.grafico import gera_grafico
 from random import randrange
 import sys
 
 from searches.profundidade import busca_profundidade
 from searches.largura import busca_largura
-
-
-#todo: colocar todos os algoritmos aqui para realizar o teste de desempenho
 
 if __name__ == "__main__":
 
@@ -21,8 +19,7 @@ if __name__ == "__main__":
 
     for p in valores_p:
         
-        grafo = Grafo(2000, p)
-        print(grafo.range)
+        grafo = Grafo(200, p)
         
         for i in range(n_testes):
 
@@ -39,7 +36,8 @@ if __name__ == "__main__":
         
         medias_tempo = map(lambda total : total/n_testes, valores_tempo)
         medias_tempo = list(medias_tempo)
-        print(medias_tempo)
+
+        gera_grafico(valores_y=medias_tempo, titulo="Tempos - n=2000 p=" + str(p*100))
 
     #found = busca_informada(grafo, start_node, goal_node, heuristica_best_first, info_rede_best_first)
     #if found:
