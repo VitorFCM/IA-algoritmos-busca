@@ -5,7 +5,8 @@ from dash.dependencies import Input, Output
 from searches.profundidade import busca_profundidade
 from searches.largura import busca_largura
 from searches.djisktra import busca_djisktra
-from searches.bestFirst import busca_best_first
+from searches.buscaInformada import busca_informada
+from searches.funcoesAvaliacao import *
 import models.plot as mp
 import dash
 
@@ -82,7 +83,10 @@ def select_search(value):
         busca_djisktra(g, origem, destino, arestas, True)
         return 0
     elif value == 'Busca Best First':
-        busca_best_first(g, origem, destino, arestas, True)
+        busca_informada(g, origem, destino, heuristica_best_first, info_rede_best_first, arestas, True)
+        return 0
+    elif value == 'Busca A*':
+        busca_informada(g, origem, destino, heuristica_otimista, info_rede_A_estrela, arestas, True)
         return 0
 
 if __name__ == "__main__":
