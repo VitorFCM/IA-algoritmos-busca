@@ -4,21 +4,23 @@ def busca_profundidade_rec(grafo:Grafo, origem:int, destino:int, visitados:list,
     visitados.append(origem)
 
     if origem == destino:
-        return True
+        return 0
     
     for v in grafo.vertice_indice(origem).vizinhos:
         if v[0] not in visitados:
             if plot:
                 arestas.append((origem, v[0]))
-            if busca_profundidade_rec(grafo, v[0], destino, visitados, arestas, plot):
-                return True
             
-    return False
+            result = busca_profundidade_rec(grafo, v[0], destino, visitados, arestas, plot)
+            if result != -1:
+                return v[1] + result 
+            
+    return -1
 
 
 def busca_profundidade(grafo: Grafo, origem:int, destino:int, arestas=[], plot=False):
     visitados = []
-    busca_profundidade_rec(grafo, origem, destino, visitados, arestas, plot)
+    return busca_profundidade_rec(grafo, origem, destino, visitados, arestas, plot)
 
 
 
