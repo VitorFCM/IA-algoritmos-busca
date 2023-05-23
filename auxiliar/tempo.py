@@ -8,7 +8,7 @@ def mede_tempo(func):
 
     # Codigo de Busca
 
-    aux = func
+    custo = func
 
     ##
     fim = time.time()
@@ -16,4 +16,4 @@ def mede_tempo(func):
     tempo = fim - inicio
 
     print(f"O tempo de execucao foi de {tempo} segundos")
-    return tempo
+    return tempo, custo
