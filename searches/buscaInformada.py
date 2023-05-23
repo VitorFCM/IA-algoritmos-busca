@@ -17,7 +17,7 @@ def busca_informada(grafo, start_node, goal_node, func_heuristica, func_info_red
         custo += current_cost
         if plot:
             for (prev, prox) in aux:
-                if prox == current_node:
+                if prox == current_node and (prev, prox) not in arestas:
                     arestas.append((prev, prox))
 
         if current_node == goal_node:
