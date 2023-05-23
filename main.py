@@ -126,7 +126,7 @@ if __name__ == "__main__":
         html.H1('Rede Aleatória'),
         dcc.Graph(id='live-update-graph'),
         html.Div(children=[
-            dcc.Dropdown(['Busca em Profundidade', 'Busca em Largura', 'Busca Best First', 'Djisktra'],
+            dcc.Dropdown(['Busca em Profundidade', 'Busca em Largura', 'Busca Best First', 'Busca A*', 'Djisktra'],
                          'Busca em Profundidade',
                          id='search-dropdown'),
         ]),
