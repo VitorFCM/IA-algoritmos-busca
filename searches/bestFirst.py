@@ -15,13 +15,21 @@ def heuristica(vertice_atual, vertice_destino):
 
     return distancia
 
-def busca_best_first(grafo, start_node, goal_node,visitados):
-    visited = visitados
+def busca_best_first(grafo: Grafo, start_node: int, goal_node: int, arestas=[], plot=False):
+    arestas.clear()
+    arestas.append((start_node, start_node))
+    visited = []
     stack = [(heuristica(grafo.vertice_indice(start_node), grafo.vertice_indice(goal_node)), start_node)]
+    aux = []
 
     while stack:
         stack.sort(reverse=True)
         current_priority, current_node = stack.pop()
+
+        if plot:
+            for (prev, prox) in aux:
+                if prox == current_node:
+                    arestas.append((prev, prox))
 
         if current_node == goal_node:
             print("Caminho encontrado!")
@@ -31,6 +39,8 @@ def busca_best_first(grafo, start_node, goal_node,visitados):
 
         for neighbor, _ in grafo.vertice_indice(current_node).vizinhos:
             if neighbor not in visited:
+                if plot:
+                    aux.append((current_node, neighbor))
                 priority = heuristica(grafo.vertice_indice(neighbor), grafo.vertice_indice(goal_node))
                 stack.append((priority, neighbor))
 
