@@ -36,6 +36,18 @@ def update_refresh_rate(value):
     return [value * 1000]
 
 
+@app.callback(
+    Output('interval-component', 'disabled', allow_duplicate=True),
+    Input('interval-component', 'n_intervals'),
+    prevent_initial_call=True,
+)
+def stop_update(n):
+    if n >= len(arestas):
+        return True
+    else:
+        return False
+
+
 @app.callback(Output('live-update-graph', 'figure'),
               Input('interval-component', 'n_intervals'),
               )
@@ -68,6 +80,7 @@ def button_press(play_b, pause_b, next_b, previous_b, n_intervals, disabled):
         return True, index
     return disabled, n_intervals
 
+
 @app.callback(
     Output('interval-component', 'n_intervals'),
     Input('search-dropdown', 'value'),
@@ -85,6 +98,7 @@ def select_search(value):
     elif value == 'Busca Best First':
         busca_best_first(g, origem, destino, arestas, True)
         return 0
+
 
 if __name__ == "__main__":
 
@@ -109,7 +123,8 @@ if __name__ == "__main__":
         html.H1('Rede Aleatória'),
         dcc.Graph(id='live-update-graph'),
         html.Div(children=[
-            dcc.Dropdown(['Busca em Profundidade', 'Busca em Largura', 'Busca Best First', 'Djisktra'], 'Busca em Profundidade',
+            dcc.Dropdown(['Busca em Profundidade', 'Busca em Largura', 'Busca Best First', 'Djisktra'],
+                         'Busca em Profundidade',
                          id='search-dropdown'),
         ]),
         html.Br(),
