@@ -88,7 +88,7 @@ def select_search(value):
 
 if __name__ == "__main__":
 
-    g = Grafo(n_range=20, prob=0.1)
+    g = Grafo(n_range=50, prob=0.1)
 
     origem = randrange(g.range)
     destino = randrange(g.range)

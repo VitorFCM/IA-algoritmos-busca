@@ -28,7 +28,7 @@ def busca_best_first(grafo: Grafo, start_node: int, goal_node: int, arestas=[], 
 
         if plot:
             for (prev, prox) in aux:
-                if prox == current_node:
+                if prox == current_node and (prev, prox) not in arestas:
                     arestas.append((prev, prox))
 
         if current_node == goal_node:
