@@ -36,16 +36,16 @@ def update_refresh_rate(value):
     return [value * 1000]
 
 
-@app.callback(
-    Output('interval-component', 'disabled', allow_duplicate=True),
-    Input('interval-component', 'n_intervals'),
-    prevent_initial_call=True,
-)
-def stop_update(n):
-    if n >= len(arestas):
-        return True
-    else:
-        return False
+# @app.callback(
+#     Output('interval-component', 'disabled', allow_duplicate=True),
+#     Input('interval-component', 'n_intervals'),
+#     prevent_initial_call=True,
+# )
+# def stop_update(n):
+#     if n >= len(arestas):
+#         return True
+#     else:
+#         return False
 
 
 @app.callback(Output('live-update-graph', 'figure'),
