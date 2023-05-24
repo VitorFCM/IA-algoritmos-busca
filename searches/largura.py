@@ -2,7 +2,6 @@ from models.grafo import Grafo
 
 
 def busca_largura_rec(grafo: Grafo, origem: tuple, destino: int, visitados: list, fila: list, arestas: list, plot: bool):
-    # TODO: Falta registrar as arestas percorridas
     visitados.append(origem)
 
     if origem[0] == destino:
