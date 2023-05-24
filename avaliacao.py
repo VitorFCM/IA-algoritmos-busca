@@ -11,15 +11,11 @@ import sys
 
 if __name__ == "__main__":
 
-    grafo = Grafo(2000, 0.025)
-    print("vai")
-    busca_informada(grafo, 0, 100, heuristica_best_first, info_rede_best_first)
-    print("foi")
     # Foi necessario aumentar o maximo de profundidade da recursao
     # pois para 2000 vertices a busca em profundidade ultrapassava o limite
     sys.setrecursionlimit(10000)
 
-    valores_p = [0.01]#[0.05, 0.025, 0.01]
+    valores_p = [0.05, 0.025, 0.01]
     n_testes = 10
     algos = ["Profundidade", "Largura", "Best-First", "A*", "Dijkstra"]
 
