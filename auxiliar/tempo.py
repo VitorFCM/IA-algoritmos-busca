@@ -4,17 +4,18 @@ import time
 
 def mede_tempo(func,*args):
 
-    print('Iniciando cronometro.')
+    #print('Iniciando cronometro.')
     inicio = time.time()
 
     # Codigo de Busca
 
-    custo = func(*args)
+    #custo = func(*args)
+    custo = func
 
     ##
     fim = time.time()
 
     tempo = fim - inicio
 
-    print(f"O tempo de execucao foi de {tempo} segundos")
+    #print(f"O tempo de execucao foi de {tempo} segundos")
     return tempo, custo

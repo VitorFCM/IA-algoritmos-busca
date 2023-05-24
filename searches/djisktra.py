@@ -54,11 +54,8 @@ def busca_djisktra(grafo: Grafo, origem: int, dest: int, arestas=[], plot=False)
 
     custos, caminhos = recursive_djisktra(grafo, origem, dest, visitados, custos, caminhos, arestas, plot)
 
-    print(f'arestas: {arestas}')
-    print(f'custos:{custos}')
-    print(f'caminhos:{caminhos}')
+    #print(f'arestas: {arestas}')
+    #print(f'custos:{custos}')
+    #print(f'caminhos:{caminhos}')
 
-
-if __name__ == '__main__':
-    g = Grafo(n_range=2000, prob=0.2)
-    mede_tempo(busca_djisktra, g, 1, 19)
+    return custos

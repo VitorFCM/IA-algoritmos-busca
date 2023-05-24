@@ -21,7 +21,7 @@ def busca_informada(grafo, start_node, goal_node, func_heuristica, func_info_red
                     arestas.append((prev, prox))
 
         if current_node == goal_node:
-            print("Caminho encontrado!")
+            #print("Caminho encontrado!")
             return custo
 
         visited.append(current_node)

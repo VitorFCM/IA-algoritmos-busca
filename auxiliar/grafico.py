@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 def gera_grafico(
         valores_y, 
-        valores_x=["Profundidade", "Largura", "Best-First", "A*"], 
+        valores_x=["Profundidade", "Largura", "Best-First", "A*", "Dijkstra"], 
         titulo=None, 
         xlabel=None, 
         ylabel=None):
@@ -23,5 +23,8 @@ def gera_grafico(
         plt.ylabel(ylabel)
 
     #todo: criar pasta para salvar as imagens
-    plt.savefig("figuras/" + str(titulo) + ".png")
+    #plt.savefig("figuras/" + str(titulo) + ".png")
+    plt.show()
+
+    return
 
