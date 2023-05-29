@@ -3,7 +3,7 @@ from auxiliar.tempo import mede_tempo
 from random import randrange
 
 
-def recursive_djisktra(grafo: Grafo, atual: int, dest: int, func_heuristica, visitados: list[int], custos: list[int],
+def recursive_dijkstra(grafo: Grafo, atual: int, dest: int, func_heuristica, visitados: list[int], custos: list[int],
         caminhos: list[list[int]], arestas=[], plot=False):
     while True:
         visitados.append(atual)
@@ -41,7 +41,7 @@ def recursive_djisktra(grafo: Grafo, atual: int, dest: int, func_heuristica, vis
         atual = next
 
 
-def busca_djisktra(grafo: Grafo, origem: int, dest: int, func_heuristica=lambda v1, v2: 0, arestas=[], plot=False):
+def busca_dijkstra(grafo: Grafo, origem: int, dest: int, func_heuristica=lambda v1, v2: 0, arestas=[], plot=False):
     arestas.clear()
     arestas.append((origem, origem))
     visitados = []
@@ -53,7 +53,7 @@ def busca_djisktra(grafo: Grafo, origem: int, dest: int, func_heuristica=lambda 
     # print(f'custos:{custos}')
     # print(f'caminhos:{caminhos}')
 
-    custos, caminhos = recursive_djisktra(grafo, origem, dest, func_heuristica, visitados, custos, caminhos, arestas, plot)
+    custos, caminhos = recursive_dijkstra(grafo, origem, dest, func_heuristica, visitados, custos, caminhos, arestas, plot)
 
     #print(f'arestas: {arestas}')
     #print(f'custos:{custos}')

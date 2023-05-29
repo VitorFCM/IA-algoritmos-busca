@@ -5,7 +5,7 @@ from searches.bestFirst import best_first
 from searches.funcoesAvaliacao import *
 from searches.profundidade import busca_profundidade
 from searches.largura import busca_largura
-from searches.djisktra import busca_djisktra
+from searches.dijkstra import busca_dijkstra
 from random import randrange
 import sys
 
@@ -49,12 +49,12 @@ if __name__ == "__main__":
             valores_custo[2] += custo
 
             #A*
-            tempo, custo = mede_tempo(busca_djisktra, grafo, origem, destino, heuristica_best_first)
+            tempo, custo = mede_tempo(busca_dijkstra, grafo, origem, destino, heuristica_best_first)
             valores_tempo[3] += tempo
             valores_custo[3] += custo
 
             #Dijkstra
-            tempo, custo = mede_tempo(busca_djisktra, grafo, origem, destino)
+            tempo, custo = mede_tempo(busca_dijkstra, grafo, origem, destino)
             valores_tempo[4] += tempo
             valores_custo[4] += custo
 
