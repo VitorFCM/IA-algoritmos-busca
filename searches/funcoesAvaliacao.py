@@ -16,12 +16,3 @@ def heuristica_pessimista(vertice_atual, vertice_destino):
 
 def heuristica_otimista(vertice_atual, vertice_destino): 
     return heuristica_best_first(vertice_atual, vertice_destino) / 2
-
-
-#Funcoes sobre dados da rede
-
-def info_rede_best_first(vizinho):
-    return 0
-
-def info_rede_A_estrela(vizinho):
-    return vizinho[1]

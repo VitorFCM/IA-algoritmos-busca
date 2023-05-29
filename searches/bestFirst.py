@@ -1,4 +1,4 @@
-def busca_informada(grafo, start_node, goal_node, func_heuristica, func_info_rede, arestas=[], plot=False):
+def best_first(grafo, start_node, goal_node, func_heuristica, arestas=[], plot=False):
     arestas.clear()
     arestas.append((start_node, start_node))
     visited = []
@@ -30,7 +30,7 @@ def busca_informada(grafo, start_node, goal_node, func_heuristica, func_info_red
             if neighbor[0] not in visited:
                 if plot:
                     aux.append((current_node, neighbor[0]))
-                priority = func_heuristica(grafo.vertice_indice(neighbor[0]), grafo.vertice_indice(goal_node)) + func_info_rede(neighbor)
+                priority = func_heuristica(grafo.vertice_indice(neighbor[0]), grafo.vertice_indice(goal_node)) 
                 stack.append([priority, neighbor[0], neighbor[1]])
 
     print("Caminho não encontrado.")

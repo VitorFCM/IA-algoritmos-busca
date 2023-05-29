@@ -3,14 +3,15 @@ from auxiliar.tempo import mede_tempo
 from random import randrange
 
 
-def recursive_djisktra(grafo: Grafo, atual: int, dest: int, visitados: list[int], custos: list[int],
-                       caminhos: list[list[int]], arestas=[], plot=False):
+def recursive_djisktra(grafo: Grafo, atual: int, dest: int, func_heuristica, visitados: list[int], custos: list[int],
+        caminhos: list[list[int]], arestas=[], plot=False):
     while True:
         visitados.append(atual)
-
-        if grafo.vertice_indice(atual).vizinhos:
+        
+        vertice_atual = grafo.vertice_indice(atual)
+        if vertice_atual.vizinhos:
             # print(f'caminhos de {atual}: {grafo.vertice_indice(atual).vizinhos}')
-            for a in grafo.vertice_indice(atual).vizinhos:
+            for a in vertice_atual.vizinhos:
                 viz = a[0]
                 peso = a[1]
 
@@ -23,7 +24,7 @@ def recursive_djisktra(grafo: Grafo, atual: int, dest: int, visitados: list[int]
         next_peso = 999999999999
         for i in range(grafo.range):
             if i not in visitados:
-                if (custos[i] != -1) and (custos[i] < next_peso):
+                if (custos[i] != -1) and (custos[i] + func_heuristica(grafo.vertice_indice(i), grafo.vertice_indice(dest))< next_peso):
                     next_peso = custos[i]
                     next = i
 
@@ -40,7 +41,7 @@ def recursive_djisktra(grafo: Grafo, atual: int, dest: int, visitados: list[int]
         atual = next
 
 
-def busca_djisktra(grafo: Grafo, origem: int, dest: int, arestas=[], plot=False):
+def busca_djisktra(grafo: Grafo, origem: int, dest: int, func_heuristica=lambda v1, v2: 0, arestas=[], plot=False):
     arestas.clear()
     arestas.append((origem, origem))
     visitados = []
@@ -52,7 +53,7 @@ def busca_djisktra(grafo: Grafo, origem: int, dest: int, arestas=[], plot=False)
     # print(f'custos:{custos}')
     # print(f'caminhos:{caminhos}')
 
-    custos, caminhos = recursive_djisktra(grafo, origem, dest, visitados, custos, caminhos, arestas, plot)
+    custos, caminhos = recursive_djisktra(grafo, origem, dest, func_heuristica, visitados, custos, caminhos, arestas, plot)
 
     #print(f'arestas: {arestas}')
     #print(f'custos:{custos}')

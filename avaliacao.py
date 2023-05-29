@@ -1,7 +1,7 @@
 from models.grafo import Grafo
 from auxiliar.tempo import mede_tempo
 from auxiliar.grafico import gera_grafico
-from searches.buscaInformada import busca_informada
+from searches.bestFirst import best_first
 from searches.funcoesAvaliacao import *
 from searches.profundidade import busca_profundidade
 from searches.largura import busca_largura
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
             origem = randrange(grafo.range)
             destino = randrange(grafo.range)
-            while origem == destino or busca_informada(grafo, origem, destino, heuristica_best_first, info_rede_best_first) == -1:
+            while origem == destino or best_first(grafo, origem, destino, heuristica_best_first) == -1:
                 destino = randrange(grafo.range)
 
             #Busca em profundidade
@@ -44,12 +44,12 @@ if __name__ == "__main__":
             valores_custo[1] += custo
 
             #Best first
-            tempo, custo = mede_tempo(busca_informada, grafo, origem, destino, heuristica_best_first, info_rede_best_first)
+            tempo, custo = mede_tempo(best_first, grafo, origem, destino, heuristica_best_first)
             valores_tempo[2] += tempo
             valores_custo[2] += custo
 
             #A*
-            tempo, custo = mede_tempo(busca_informada, grafo, origem, destino, heuristica_best_first, info_rede_A_estrela)
+            tempo, custo = mede_tempo(busca_djisktra, grafo, origem, destino, heuristica_best_first)
             valores_tempo[3] += tempo
             valores_custo[3] += custo
 
