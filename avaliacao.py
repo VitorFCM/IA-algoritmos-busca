@@ -34,27 +34,27 @@ if __name__ == "__main__":
                 destino = randrange(grafo.range)
 
             #Busca em profundidade
-            tempo, custo = mede_tempo(busca_profundidade(grafo, origem, destino))
+            tempo, custo = mede_tempo(busca_profundidade, grafo, origem, destino)
             valores_tempo[0] += tempo
             valores_custo[0] += custo
 
             #Busca em largura
-            tempo, custo = mede_tempo(busca_largura(grafo, origem, destino))
+            tempo, custo = mede_tempo(busca_largura, grafo, origem, destino)
             valores_tempo[1] += tempo
             valores_custo[1] += custo
 
             #Best first
-            tempo, custo = mede_tempo(busca_informada(grafo, origem, destino, heuristica_best_first, info_rede_best_first))
+            tempo, custo = mede_tempo(busca_informada, grafo, origem, destino, heuristica_best_first, info_rede_best_first)
             valores_tempo[2] += tempo
             valores_custo[2] += custo
 
             #A*
-            tempo, custo = mede_tempo(busca_informada(grafo, origem, destino, heuristica_best_first, info_rede_A_estrela))
+            tempo, custo = mede_tempo(busca_informada, grafo, origem, destino, heuristica_best_first, info_rede_A_estrela)
             valores_tempo[3] += tempo
             valores_custo[3] += custo
 
             #Dijkstra
-            tempo, custo = mede_tempo(busca_djisktra(grafo, origem, destino))
+            tempo, custo = mede_tempo(busca_djisktra, grafo, origem, destino)
             valores_tempo[4] += tempo
             valores_custo[4] += custo
 

@@ -23,8 +23,8 @@ def gera_grafico(
         plt.ylabel(ylabel)
 
     #todo: criar pasta para salvar as imagens
-    #plt.savefig("figuras/" + str(titulo) + ".png")
-    plt.show()
+    plt.savefig("figuras/" + str(titulo) + ".png")
+    #plt.show()
 
     return
 

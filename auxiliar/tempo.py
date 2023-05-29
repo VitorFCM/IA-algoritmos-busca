@@ -9,8 +9,7 @@ def mede_tempo(func,*args):
 
     # Codigo de Busca
 
-    #custo = func(*args)
-    custo = func
+    custo = func(*args)
 
     ##
     fim = time.time()
